@@ -94,6 +94,7 @@ function Baby(name, age, favoriteToy) {
   Person.call(this,name,age);
   this.favoriteToy = favoriteToy;
 }
+Baby.prototype = Object.create(Person.prototype);
 Baby.prototype.play = function(){
   return `${this.name} is ${this.age}, and is playing with ${this.favoriteToy}.`;
 }
@@ -103,15 +104,15 @@ const baby1 = new Baby ({
   favoriteToy: 'Mobile'
 });
 
-// console.log(baby1.play());
+// console.log(Baby.play());
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global binding is when 'this' takes information/items from the whole Javascript language.
+  2. Implicit binding is when 'this' is used as a placeholder in a string that the imput can be changed as needed. Example `${this.name} says hello!'
+  3. New binding is when a new object is being created and returned by a constructor function.
+  4. Explicit binding is when .call is being used. 
 */
 
 ///////// END OF CHALLENGE /////////
