@@ -15,9 +15,33 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
+Person.prototype.eat = function(someFood){
+  if (this.stomach.length <= 10){
+    this.stomach.push(someFood);
+  }
+}
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+}
+
+const cassandra = new Person('Cassandra', 30);
+console.log(cassandra.toString());
+// cassandra.eat('Burgers, Fries, Tea, Chicken, Frosty, Pasta, Cookies, Chocolate, Pizza, Chips');
+cassandra.eat('Fries');
+cassandra.eat('Cheeseburger');
+cassandra.eat('Milkshake');
+console.log(cassandra.stomach);
+cassandra.poop();
+console.log(cassandra.stomach);
+// console.log(cassandra.toStrin)
 
 
 /*
@@ -36,10 +60,27 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon; 
+  this.tank = 0;
+  this.odometer = 0
 }
-
+Car.prototype.fill = function(gallons){
+  this.tank = this.tank + gallons;
+}
+Car.prototype.drive = function(miles){
+  const distance = this.tank * this.milesPerGallon;
+  if (miles <= dist){
+    this.odometer = this.odometer + miles;
+    this.tank = this.tank - (miles/this.milesPerGallon);
+  } else{
+    this.odometer = this.odometer + distance;
+    this.tank = 0;
+    return `I ran out of fwel at ${this.odometer} miles.`;
+  }
+}
+// console.log(Car());
 
 /*
   TASK 3
@@ -49,10 +90,20 @@ function Car() {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this,name,age);
+  this.favoriteToy = favoriteToy;
 }
+Baby.prototype.play = function(){
+  return `${this.name} is ${this.age}, and is playing with ${this.favoriteToy}.`;
+}
+const baby1 = new Baby ({
+  name: 'Colton',
+  age: '3 Months',
+  favoriteToy: 'Mobile'
+});
 
+// console.log(baby1.play());
 
 /* 
   TASK 4
